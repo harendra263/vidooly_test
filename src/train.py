@@ -107,7 +107,7 @@ axes[2, 1].set_xlabel("Category")
 axes[2, 1].set_ylabel("Adview")
 
 plt.tight_layout()
-save_fig("Views vs All Features")
+plt.savefig("images/end_to_end_project/Views vs All Features")
 plt.show()
 
 # =====================================================================
@@ -122,7 +122,7 @@ df.drop(cols_to_drop, axis=1, inplace=True)
 correlations = df.corr()
 # annot=True displays the correlation values
 sns.heatmap(correlations, annot=True).set(title='Heatmap of YouTube Data - Pearson Correlations');
-save_fig("Correlation_plot.png")
+plt.savefig("images/end_to_end_project/Correlation_plot.png", dpi=120)
 
 # =============================================================
 #  MODEL BUILDING
@@ -173,7 +173,7 @@ ax.set_ylabel("Importance", fontsize = axis_fs)
 ax.set_title("Random Forest\nFeature Importance", fontsize= title_fs)
 
 plt.tight_layout()
-plt.savefig(os.path.join(IMAGES_PATH, "imagesFeature_Importance.png"), dpi=120)
+plt.savefig("images/end_to_end_project/Feature_Importance.png", dpi=120)
 plt.close
 
 # ==================================================
@@ -196,5 +196,5 @@ plt.ylim((2.5,8.5))
 plt.xlim((2.5,8.5))
 
 plt.tight_layout()
-plt.savefig(os.path.join(IMAGES_PATH, "residuals.png"),dpi=120)
+plt.savefig("images/end_to_end_project/residuals.png",dpi=120)
 
