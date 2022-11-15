@@ -10,7 +10,6 @@ from typing import List
 from tqdm import tqdm
 
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.ensemble import RandomForestRegressor
 
 import os
