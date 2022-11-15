@@ -1,21 +1,20 @@
-import pandas as pd
-from sklearn.preprocessing import LabelEncoder
+import os
 import re
+from typing import List
 
 import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
-
-from typing import List
+import pandas as pd
+import seaborn as sns
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.preprocessing import LabelEncoder
 from tqdm import tqdm
 
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.ensemble import RandomForestRegressor
-
-import os
+import warnings
+warnings.filterwarnings('ignore')
 
 # Where to save the figures
-PROJECT_ROOT_DIR = ".."
+PROJECT_ROOT_DIR = "."
 CHAPTER_ID = "end_to_end_project"
 IMAGES_PATH = os.path.join(PROJECT_ROOT_DIR, "images", CHAPTER_ID)
 os.makedirs(IMAGES_PATH, exist_ok=True)
@@ -27,7 +26,7 @@ def save_fig(fig_id, tight_layout=True, fig_extension="png", resolution=120):
         plt.tight_layout()
     plt.savefig(path, format=fig_extension, dpi=resolution)
 
-df = pd.read_csv("../input/train.csv")
+df = pd.read_csv("input/train.csv")
 
 
 df['video_duration'] = df.duration.apply(lambda x: re.findall(pattern='\d+\w+', string=x)[0])
@@ -107,7 +106,6 @@ axes[2, 1].set_ylabel("Adview")
 
 plt.tight_layout()
 save_fig("Views_vs_All_Features")
-plt.show()
 
 # =====================================================================
 
@@ -121,7 +119,7 @@ df.drop(cols_to_drop, axis=1, inplace=True)
 correlations = df.corr()
 # annot=True displays the correlation values
 sns.heatmap(correlations, annot=True).set(title='Heatmap of YouTube Data - Pearson Correlations');
-save_fig("Correlation_plot.png")
+save_fig("Correlation_plot")
 
 # =============================================================
 #  MODEL BUILDING
@@ -172,8 +170,8 @@ ax.set_ylabel("Importance", fontsize = axis_fs)
 ax.set_title("Random Forest\nFeature Importance", fontsize= title_fs)
 
 plt.tight_layout()
-plt.savefig(os.path.join(IMAGES_PATH, "imagesFeature_Importance.png"), dpi=120)
-plt.close
+plt.savefig(os.path.join(IMAGES_PATH, "Feature_Importance.png"), dpi=120)
+plt.close()
 
 # ==================================================
 # PLOT RESIDUALS
