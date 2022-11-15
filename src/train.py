@@ -106,7 +106,7 @@ axes[2, 1].set_xlabel("Category")
 axes[2, 1].set_ylabel("Adview")
 
 plt.tight_layout()
-save_fig("Views vs All Features")
+save_fig("Views_vs_All_Features")
 plt.show()
 
 # =====================================================================
