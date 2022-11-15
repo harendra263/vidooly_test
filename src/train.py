@@ -1,19 +1,17 @@
-import pandas as pd
-from sklearn.preprocessing import LabelEncoder
+import os
 import re
+from typing import List
 
 import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
-
-from typing import List
+import pandas as pd
+import seaborn as sns
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.preprocessing import LabelEncoder
 from tqdm import tqdm
 
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import mean_absolute_error, mean_squared_error
-from sklearn.ensemble import RandomForestRegressor
-
-import os
+import warnings
+warnings.filterwarnings('ignore')
 
 # Where to save the figures
 PROJECT_ROOT_DIR = "."
@@ -107,8 +105,7 @@ axes[2, 1].set_xlabel("Category")
 axes[2, 1].set_ylabel("Adview")
 
 plt.tight_layout()
-plt.savefig("images/end_to_end_project/Views vs All Features")
-plt.show()
+save_fig("Views_vs_All_Features")
 
 # =====================================================================
 
@@ -122,7 +119,7 @@ df.drop(cols_to_drop, axis=1, inplace=True)
 correlations = df.corr()
 # annot=True displays the correlation values
 sns.heatmap(correlations, annot=True).set(title='Heatmap of YouTube Data - Pearson Correlations');
-plt.savefig("images/end_to_end_project/Correlation_plot.png", dpi=120)
+save_fig("Correlation_plot")
 
 # =============================================================
 #  MODEL BUILDING
@@ -173,8 +170,8 @@ ax.set_ylabel("Importance", fontsize = axis_fs)
 ax.set_title("Random Forest\nFeature Importance", fontsize= title_fs)
 
 plt.tight_layout()
-plt.savefig("images/end_to_end_project/Feature_Importance.png", dpi=120)
-plt.close
+plt.savefig(os.path.join(IMAGES_PATH, "Feature_Importance.png"), dpi=120)
+plt.close()
 
 # ==================================================
 # PLOT RESIDUALS
@@ -196,5 +193,5 @@ plt.ylim((2.5,8.5))
 plt.xlim((2.5,8.5))
 
 plt.tight_layout()
-plt.savefig("images/end_to_end_project/residuals.png",dpi=120)
+plt.savefig(os.path.join(IMAGES_PATH, "residuals.png"),dpi=120)
 
