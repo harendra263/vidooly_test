@@ -16,7 +16,7 @@ from sklearn.ensemble import RandomForestRegressor
 import os
 
 # Where to save the figures
-PROJECT_ROOT_DIR = ".."
+PROJECT_ROOT_DIR = "."
 CHAPTER_ID = "end_to_end_project"
 IMAGES_PATH = os.path.join(PROJECT_ROOT_DIR, "images", CHAPTER_ID)
 os.makedirs(IMAGES_PATH, exist_ok=True)
@@ -28,7 +28,7 @@ def save_fig(fig_id, tight_layout=True, fig_extension="png", resolution=120):
         plt.tight_layout()
     plt.savefig(path, format=fig_extension, dpi=resolution)
 
-df = pd.read_csv("../input/train.csv")
+df = pd.read_csv("input/train.csv")
 
 
 df['video_duration'] = df.duration.apply(lambda x: re.findall(pattern='\d+\w+', string=x)[0])
