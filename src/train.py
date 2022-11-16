@@ -134,7 +134,7 @@ y = df["adview"]
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=SEED)
 
-regr = RandomForestRegressor(max_depth=2, random_state=SEED)
+regr = RandomForestRegressor(max_depth=5, random_state=SEED)
 regr.fit(X_train, y_train)
 
 # Train Score
@@ -163,7 +163,7 @@ axis_fs = 18
 title_fs = 22
 sns.set(style="whitegrid")
 
-ax = sns.barplot(x = "Features", y="Importances", data=feature_df)
+ax = sns.barplot(x = "Features", y="Importances", orient='h', data=feature_df)
 ax.set_xlabel("Feature", fontsize=axis_fs)
 ax.set_ylabel("Importance", fontsize = axis_fs)
 
