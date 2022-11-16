@@ -170,7 +170,8 @@ ax.set_ylabel("Importance", fontsize = axis_fs)
 ax.set_title("Random Forest\nFeature Importance", fontsize= title_fs)
 
 plt.tight_layout()
-plt.savefig(os.path.join(IMAGES_PATH, "Feature_Importance.png"), dpi=120)
+save_fig("Feature_Importance")
+# plt.savefig(os.path.join(IMAGES_PATH, "Feature_Importance.png"), dpi=120)
 plt.close()
 
 # ==================================================
@@ -193,5 +194,6 @@ plt.ylim((2.5,8.5))
 plt.xlim((2.5,8.5))
 
 plt.tight_layout()
-plt.savefig(os.path.join(IMAGES_PATH, "residuals.png"),dpi=120)
+save_fig("residuals.png")
+# plt.savefig(os.path.join(IMAGES_PATH, "residuals.png"),dpi=120)
 
