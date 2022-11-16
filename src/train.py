@@ -170,7 +170,7 @@ ax.set_ylabel("Importance", fontsize = axis_fs)
 ax.set_title("Random Forest\nFeature Importance", fontsize= title_fs)
 
 plt.tight_layout()
-plt.savefig(os.path.join(IMAGES_PATH, "Feature_Importance.png"), dpi=120)
+plt.savefig("images/end_to_end_project/Feature_Importance.png", dpi=120)
 plt.close()
 
 # ==================================================
