@@ -106,6 +106,7 @@ axes[2, 1].set_ylabel("Adview")
 
 plt.tight_layout()
 save_fig("Views_vs_All_Features")
+plt.close()
 
 # =====================================================================
 
@@ -120,6 +121,7 @@ correlations = df.corr()
 # annot=True displays the correlation values
 sns.heatmap(correlations, annot=True).set(title='Heatmap of YouTube Data - Pearson Correlations');
 save_fig("Correlation_plot")
+plt.close()
 
 # =============================================================
 #  MODEL BUILDING
@@ -163,7 +165,7 @@ axis_fs = 18
 title_fs = 22
 sns.set(style="whitegrid")
 
-ax = sns.barplot(x = "Features", y="Importances", orient='h', data=feature_df)
+ax = sns.barplot(y = "Features", x="Importances", orient='h', data=feature_df)
 ax.set_xlabel("Feature", fontsize=axis_fs)
 ax.set_ylabel("Importance", fontsize = axis_fs)
 
@@ -196,4 +198,5 @@ plt.xlim((2.5,8.5))
 plt.tight_layout()
 save_fig("residuals.png")
 # plt.savefig(os.path.join(IMAGES_PATH, "residuals.png"),dpi=120)
+plt.close()
 
