@@ -1,0 +1,25 @@
+name: model-adview-prediction
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    container: docker://dvcorg/cml-py3:latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Train model
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Your ML workflow goes here
+          pip install -r requirements.txt
+          python src/train.py
+          echo "## MODEL METRICS" > report.md
+          cat input/metrics.txt >> report.md
+          
+          echo "## Data viz" >> report.md
+          cml-publish images/end_to_end_project/Correlation_plot.png >> report.md
+          cml-publish images/end_to_end_project/Feature_Importance.png >> report.md
+          cml-publish images/end_to_end_project/residuals.png >> report.md
+          cml-publish images/end_to_end_project/Views_vs_All_Features.png >> report.md
+          
+          cml-send-comment report.md
